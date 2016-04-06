@@ -19,9 +19,7 @@ namespace ScheduleManagementUsingWFA
 
         private void frm_Chinh_Load(object sender, EventArgs e)
         {
-            frm_Chinh frm = new frm_Chinh();
-            frm.Width = 1024;
-            frm.Height = 768;
+            
         }
     }
 }
