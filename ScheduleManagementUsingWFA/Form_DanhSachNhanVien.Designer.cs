@@ -1,6 +1,6 @@
 ﻿namespace ScheduleManagementUsingWFA
 {
-    partial class Form_PhanCong
+    partial class Form_DanhSachNhanVien
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Form_PhanCong
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(666, 314);
-            this.Name = "Form_PhanCong";
-            this.Text = "Form_PhanCong";
-            this.ResumeLayout(false);
-
+            this.Text = "Form_DanhSachNhanVien";
         }
 
         #endregion
