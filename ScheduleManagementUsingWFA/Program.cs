@@ -16,7 +16,7 @@ namespace ScheduleManagementUsingWFA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_Chinh());
+            Application.Run(new Form_DanhSachNhanVien());
         }
     }
 }

@@ -2,7 +2,7 @@
   <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=ScheduleManagement;User ID=sa" SettingsObjectName="ScheduleManagementUsingWFA.Properties.Settings" SettingsPropertyName="ScheduleManagementConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.CaLamViec" Member="CaLamViecs">
     <Type Name="CaLamViec">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Ca" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
       <Association Name="CaLamViec_PhanCongLamViec" Member="PhanCongLamViecs" ThisKey="Id" OtherKey="MaCaLV" Type="PhanCongLamViec" />
     </Type>
@@ -18,7 +18,7 @@
   </Table>
   <Table Name="dbo.NhanVien" Member="NhanViens">
     <Type Name="NhanVien">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="HoTen" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ThoiGianLV" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="NhanVien_ChiTietNhanVien" Member="ChiTietNhanViens" ThisKey="Id" OtherKey="Id" Type="ChiTietNhanVien" />
@@ -38,13 +38,13 @@
   </Table>
   <Table Name="dbo.ThoiGianLamViec" Member="ThoiGianLamViecs">
     <Type Name="ThoiGianLamViec">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ThoiGian" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.ViTriLamViec" Member="ViTriLamViecs">
     <Type Name="ViTriLamViec">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ViTri" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
       <Association Name="ViTriLamViec_PhanCongLamViec" Member="PhanCongLamViecs" ThisKey="Id" OtherKey="MaViTriLV" Type="PhanCongLamViec" />
     </Type>
