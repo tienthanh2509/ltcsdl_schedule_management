@@ -16,10 +16,7 @@ namespace ScheduleManagementUsingWFA
         {
             InitializeComponent();
             // disable control
-            disableDgvChonLichRanh(false);
-            disableCommonChonLichRanh(true);
-            disableCommonNhanVien(false);
-            disableButtonNhanVien(true, false);
+
             //disableButtonChonLichRanh(false);
 
 
@@ -28,6 +25,12 @@ namespace ScheduleManagementUsingWFA
         ScheduleManagementDataContext db = new ScheduleManagementDataContext();
         List<ChiTietNhanVien> chiTietNhanViens = new List<ChiTietNhanVien>();
         List<NhanVien> nhanViens = new List<NhanVien>();
+        List<ThoiGianLamViec> thoiGianLamViecs = new List<ThoiGianLamViec>();
+        //List<CaLamViec> caLamViecs = new List<CaLamViec>();
+        //List<ViTriLamViec> viTriLamViec = new List<ViTriLamViec>();
+        //List<PhanCongLamViec> phanCongLamViec = new List<PhanCongLamViec>();
+
+
 
         // enable/disable
         private void disableCommonNhanVien(bool b)
@@ -51,12 +54,15 @@ namespace ScheduleManagementUsingWFA
         }
         private void disableButtonChonLichRanh(bool b)
         {
-
+            btnCapNhatLichRanh.Enabled = !b;
             btnLuuLichRanh.Enabled = b;
             btnHuyLichRanh.Enabled = b;
         }
         private void disableDgvChonLichRanh(bool b)
         {
+            chkBoxChonTatCaCaChieu.Enabled = b;
+            chkBoxChonTatCaCaSang.Enabled = b;
+            chkBoxChonTatCaCaToi.Enabled = b;
             dgvCaChieu.Enabled = b;
             dgvCaSang.Enabled = b;
             dgvCaToi.Enabled = b;
@@ -74,49 +80,67 @@ namespace ScheduleManagementUsingWFA
             // binding data -> combobox
             //int temp;
             //bool b=Int32.TryParse(cmb2.SelectedValue.ToString(),out temp);
-            var mau = ((from ctnv in chiTietNhanViens
-                        where ctnv.Id == (int)cmbChonTenNV.SelectedValue
-                        select ctnv.Mau).ToList()).FirstOrDefault();
-            cmbMauNV.BackColor = ColorTranslator.FromHtml(mau.ToString());
 
-            // databinding to datagridview
-            //DataSet dsLichRanh = new DataSet();
-            // BindingSource bs = new BindingSource();
-            //  bs.DataSource = typeof(ChiTietNhanVien);
+            try
+            {
+                var mau = ((from ctnv in chiTietNhanViens
+                            where ctnv.Id == (int)cmbChonTenNV.SelectedValue
+                            select ctnv.Mau).ToList()).FirstOrDefault();
 
-            // chon ra lich ranh ca sang cua nhan vien dang chon
-            var dsLichRanhCaSang = (from ctnv in chiTietNhanViens
-                                    where (ctnv.Id == Convert.ToInt32(cmbChonTenNV.SelectedValue) && ctnv.CaLV == 1)
-                                    select ctnv.ThuLV).ToList();
+                cmbMauNV.BackColor = ColorTranslator.FromHtml(mau.ToString());
 
-            // chon ra lich ranh ca chieu cua nhan vien dang chon
-            var dsLichRanhCaChieu = (from ctnv in chiTietNhanViens
-                                     where (ctnv.Id == Convert.ToInt32(cmbChonTenNV.SelectedValue) && ctnv.CaLV == 2)
-                                     select ctnv.ThuLV).ToList();
-            // chon ra lich ranh ca toi cua nhan vien dang chon
-            var dsLichRanhCaToi = (from ctnv in chiTietNhanViens
-                                   where (ctnv.Id == Convert.ToInt32(cmbChonTenNV.SelectedValue) && ctnv.CaLV == 3)
-                                   select ctnv.ThuLV).ToList();
-            foreach (int j in dsLichRanhCaSang)
-            {
-                dgvCaSang.Rows[0].Cells[j - 2].Value = true;
+                // databinding to datagridview
+                //DataSet dsLichRanh = new DataSet();
+                // BindingSource bs = new BindingSource();
+                //  bs.DataSource = typeof(ChiTietNhanVien);
+
+                // chon ra lich ranh ca sang cua nhan vien dang chon
+                var dsLichRanhCaSang = (from ctnv in chiTietNhanViens
+                                        where (ctnv.Id == Convert.ToInt32(cmbChonTenNV.SelectedValue) && ctnv.CaLV == 1)
+                                        select ctnv.ThuLV).ToList();
+
+                // chon ra lich ranh ca chieu cua nhan vien dang chon
+                var dsLichRanhCaChieu = (from ctnv in chiTietNhanViens
+                                         where (ctnv.Id == Convert.ToInt32(cmbChonTenNV.SelectedValue) && ctnv.CaLV == 2)
+                                         select ctnv.ThuLV).ToList();
+                // chon ra lich ranh ca toi cua nhan vien dang chon
+                var dsLichRanhCaToi = (from ctnv in chiTietNhanViens
+                                       where (ctnv.Id == Convert.ToInt32(cmbChonTenNV.SelectedValue) && ctnv.CaLV == 3)
+                                       select ctnv.ThuLV).ToList();
+                foreach (int j in dsLichRanhCaSang)
+                {
+                    dgvCaSang.Rows[0].Cells[j - 2].Value = true;
+                }
+                foreach (int j in dsLichRanhCaChieu)
+                {
+                    dgvCaChieu.Rows[0].Cells[j - 2].Value = true;
+                }
+                foreach (int j in dsLichRanhCaToi)
+                {
+                    dgvCaToi.Rows[0].Cells[j - 2].Value = true;
+                }
             }
-            foreach (int j in dsLichRanhCaChieu)
+            catch (Exception)
             {
-                dgvCaChieu.Rows[0].Cells[j - 2].Value = true;
+
+                clearOrSelectAllColumnsChecked(false);
             }
-            foreach (int j in dsLichRanhCaToi)
-            {
-                dgvCaToi.Rows[0].Cells[j - 2].Value = true;
-            }
+
         }
         private void Form_DanhSachNhanVien_Load(object sender, EventArgs e)
         {
-
+            tabNhanVien.AttachedControl.Select();
+            disableCommonNhanVien(false);
+            disableButtonNhanVien(true, false);
             nhanViens = db.NhanViens.ToList();
             // datasource -> datagridview
             dgvDSNhanVien.DataSource = nhanViens;
 
+            thoiGianLamViecs = db.ThoiGianLamViecs.ToList();
+            // datasource -> combobox
+            cmbThoiGianLV.DataSource = thoiGianLamViecs;
+            cmbThoiGianLV.DisplayMember = "ThoiGian";
+            cmbThoiGianLV.ValueMember = "Id";
 
 
             //// datasource -> combobox
@@ -159,7 +183,7 @@ namespace ScheduleManagementUsingWFA
             //{
             //    dgvCaToi.Rows[0].Cells[j - 2].Value = true;
             //}
-            loadDataTabChonLichRanh();
+            //loadDataTabChonLichRanh();
         }
 
         private void expandableSplitter1_ExpandedChanged(object sender, DevComponents.DotNetBar.ExpandedChangeEventArgs e)
@@ -291,8 +315,8 @@ namespace ScheduleManagementUsingWFA
             db.ChiTietNhanViens.InsertAllOnSubmit(ctnv);
             db.SubmitChanges();
             //db.Refresh(System.Data.Linq.RefreshMode.KeepChanges);
-            MessageBox.Show("Saved successfully!");
-
+            MessageBox.Show("Đã lưu nhân viên thành công!");
+            clearOrSelectAllColumnsChecked(false);
         }
 
 
@@ -300,9 +324,11 @@ namespace ScheduleManagementUsingWFA
 
         private void btnHuyLichRanh_Click(object sender, EventArgs e)
         {
-            clearOrSelectAllColumnsChecked(false);
-            cmbChonTenNV.Text = "";
-            cmbMauNV.BackColor = Color.White;
+            tabLichRanh_Click(sender, e);
+            //clearOrSelectAllColumnsChecked(false);
+            //cmbChonTenNV.Text = "";
+            //cmbMauNV.BackColor = Color.White;
+
         }
         // convert color to hex=================================================================
         private static String HexConverter(System.Drawing.Color c)
@@ -340,26 +366,26 @@ namespace ScheduleManagementUsingWFA
                     dgvCaSang.Rows[0].Cells[i].Value = false;
                 else
                     dgvCaSang.Rows[0].Cells[i].Value = true;
-                
+
             }
         }
         private void clearAllColumnsCheckedCaChieu(bool b)
         {
             for (int i = 0; i < 7; i++)
             {
-                
+
                 if (b == true)
                     dgvCaChieu.Rows[0].Cells[i].Value = false;
                 else
                     dgvCaChieu.Rows[0].Cells[i].Value = true;
-                
+
             }
         }
         private void clearAllColumnsCheckedCaToi(bool b)
         {
             for (int i = 0; i < 7; i++)
             {
-                
+
                 if (b == true)
                     dgvCaToi.Rows[0].Cells[i].Value = false;
                 else
@@ -418,7 +444,8 @@ namespace ScheduleManagementUsingWFA
             {
                 clearAllColumnsCheckedCaSang(false);
             }
-            else {
+            else
+            {
                 clearAllColumnsCheckedCaSang(true);
             }
         }
@@ -443,8 +470,130 @@ namespace ScheduleManagementUsingWFA
             }
             else
             {
+
+
                 clearAllColumnsCheckedCaToi(true);
             }
+        }
+
+        private void loadTab(bool bTabNhanVien, bool bTabLichRanh, bool bTabPhanCong)
+        {
+            tabPhanCong.AttachedControl.Enabled = bTabPhanCong;
+            tabLichRanh.AttachedControl.Enabled = bTabLichRanh;
+            tabNhanVien.AttachedControl.Enabled = bTabNhanVien;
+        }
+
+        private void tabNhanVien_Click(object sender, EventArgs e)
+        {
+            loadTab(true, false, false);
+            nhanViens = db.NhanViens.ToList();
+
+            thoiGianLamViecs = db.ThoiGianLamViecs.ToList();
+            // datasource -> combobox
+            cmbThoiGianLV.DataSource = thoiGianLamViecs;
+            cmbThoiGianLV.DisplayMember = "ThoiGian";
+            cmbThoiGianLV.ValueMember = "Id";
+
+            // datasource -> datagridview
+            dgvDSNhanVien.DataSource = nhanViens;
+        }
+
+        private void tabLichRanh_Click(object sender, EventArgs e)
+        {
+            loadTab(false, true, false);
+            loadDataTabChonLichRanh();
+            disableButtonChonLichRanh(false);
+            disableCommonChonLichRanh(true);
+            disableDgvChonLichRanh(false);
+        }
+        bool them = false;
+        private void tabPhanCong_Click(object sender, EventArgs e)
+        {
+            loadTab(false, false, true);
+        }
+
+        private void btnThemNV_Click(object sender, EventArgs e)
+        {
+            them = true;
+            disableButtonNhanVien(false, true);
+            disableCommonNhanVien(true);
+        }
+        
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            if (them)
+            {
+                NhanVien nv = new NhanVien();
+                nv.HoTen = txtTenNhanVien.Text;
+                nv.ThoiGianLV = Convert.ToInt32(cmbThoiGianLV.SelectedValue);
+                db.NhanViens.InsertOnSubmit(nv);
+                db.SubmitChanges();
+                MessageBox.Show("Lưu nhân viên thành công!");
+                btnHuy_Click(sender, e);
+            }
+            else {
+                db.NhanViens.I
+                db.SubmitChanges();
+            }
+        }
+
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            Form_DanhSachNhanVien_Load(sender, e);
+            txtTenNhanVien.Text = "";
+            cmbThoiGianLV.SelectedItem = "";
+        }
+
+        private void btnXoaNV_Click(object sender, EventArgs e)
+        {
+            int index = Convert.ToInt32(dgvDSNhanVien.CurrentCell.RowIndex);
+            int getId = Convert.ToInt32(dgvDSNhanVien.Rows[index].Cells[0].Value);
+
+            var nv = db.NhanViens.Single(x => x.Id == getId);
+            db.NhanViens.DeleteOnSubmit(nv);
+            db.SubmitChanges();
+
+            MessageBox.Show("Đã xóa nhân viên thành công!");
+            tabNhanVien_Click(sender, e);
+        }
+
+        private void btnCapNhatLichRanh_Click(object sender, EventArgs e)
+        {
+            disableButtonChonLichRanh(true);
+            disableCommonChonLichRanh(false);
+            disableDgvChonLichRanh(true);
+
+        }
+
+        private void btnCapNhatNV_Click(object sender, EventArgs e)
+        {
+            them = false;
+            disableButtonNhanVien(false, true);
+            disableCommonNhanVien(true);
+            
+        }
+
+        private void dgvDSNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = Convert.ToInt32(dgvDSNhanVien.CurrentCell.RowIndex);
+            //int getId = Convert.ToInt32(dgvDSNhanVien.Rows[index].Cells[0].Value);
+            int getIdTGLV=Convert.ToInt32(dgvDSNhanVien.Rows[index].Cells[2].Value);
+
+            txtTenNhanVien.Text = dgvDSNhanVien.Rows[index].Cells[1].Value.ToString();
+
+            ThoiGianLamViec tglv = db.ThoiGianLamViecs.Single(x=>x.Id==getIdTGLV);
+
+            cmbThoiGianLV.Text = tglv.ThoiGian.ToString();
+            
+            
+            
+        }
+
+        private void dgvDSNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvDSNhanVien_CellClick(sender, e);
+            
         }
     }
 }

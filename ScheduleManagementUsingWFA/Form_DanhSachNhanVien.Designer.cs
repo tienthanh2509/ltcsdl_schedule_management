@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl2 = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.btnCapNhatLichRanh = new System.Windows.Forms.Button();
+            this.chkBoxChonTatCaCaToi = new System.Windows.Forms.CheckBox();
+            this.chkBoxChonTatCaCaSang = new System.Windows.Forms.CheckBox();
+            this.chkBoxChonTatCaCaChieu = new System.Windows.Forms.CheckBox();
             this.dgvCaSang = new System.Windows.Forms.DataGridView();
             this.dgv_Sang_Thu2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgv_Sang_Thu3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -98,16 +102,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabNhanVien = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
-            this.txtTest = new System.Windows.Forms.TextBox();
             this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.progressBarX1 = new DevComponents.DotNetBar.Controls.ProgressBarX();
             this.tabPhanCong = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabItem3 = new DevComponents.DotNetBar.TabItem(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.chkBoxChonTatCaCaChieu = new System.Windows.Forms.CheckBox();
-            this.chkBoxChonTatCaCaSang = new System.Windows.Forms.CheckBox();
-            this.chkBoxChonTatCaCaToi = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl2)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
@@ -123,9 +123,9 @@
             // tabControl2
             // 
             this.tabControl2.CanReorderTabs = true;
+            this.tabControl2.Controls.Add(this.tabControlPanel2);
             this.tabControl2.Controls.Add(this.tabControlPanel1);
             this.tabControl2.Controls.Add(this.tabControlPanel3);
-            this.tabControl2.Controls.Add(this.tabControlPanel2);
             this.tabControl2.Location = new System.Drawing.Point(1, 0);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
@@ -141,6 +141,7 @@
             // 
             // tabControlPanel1
             // 
+            this.tabControlPanel1.Controls.Add(this.btnCapNhatLichRanh);
             this.tabControlPanel1.Controls.Add(this.chkBoxChonTatCaCaToi);
             this.tabControlPanel1.Controls.Add(this.chkBoxChonTatCaCaSang);
             this.tabControlPanel1.Controls.Add(this.chkBoxChonTatCaCaChieu);
@@ -181,6 +182,49 @@
             this.tabControlPanel1.TabIndex = 2;
             this.tabControlPanel1.TabItem = this.tabLichRanh;
             this.tabControlPanel1.Click += new System.EventHandler(this.tabControlPanel1_Click);
+            // 
+            // btnCapNhatLichRanh
+            // 
+            this.btnCapNhatLichRanh.Location = new System.Drawing.Point(513, 21);
+            this.btnCapNhatLichRanh.Name = "btnCapNhatLichRanh";
+            this.btnCapNhatLichRanh.Size = new System.Drawing.Size(120, 23);
+            this.btnCapNhatLichRanh.TabIndex = 67;
+            this.btnCapNhatLichRanh.Text = "Cập nhập lịch rãnh";
+            this.btnCapNhatLichRanh.UseVisualStyleBackColor = true;
+            this.btnCapNhatLichRanh.Click += new System.EventHandler(this.btnCapNhatLichRanh_Click);
+            // 
+            // chkBoxChonTatCaCaToi
+            // 
+            this.chkBoxChonTatCaCaToi.AutoSize = true;
+            this.chkBoxChonTatCaCaToi.Location = new System.Drawing.Point(579, 187);
+            this.chkBoxChonTatCaCaToi.Name = "chkBoxChonTatCaCaToi";
+            this.chkBoxChonTatCaCaToi.Size = new System.Drawing.Size(81, 17);
+            this.chkBoxChonTatCaCaToi.TabIndex = 66;
+            this.chkBoxChonTatCaCaToi.Text = "Chọn tất cả";
+            this.chkBoxChonTatCaCaToi.UseVisualStyleBackColor = true;
+            this.chkBoxChonTatCaCaToi.CheckedChanged += new System.EventHandler(this.chkBoxChonTatCaCaToi_CheckedChanged);
+            // 
+            // chkBoxChonTatCaCaSang
+            // 
+            this.chkBoxChonTatCaCaSang.AutoSize = true;
+            this.chkBoxChonTatCaCaSang.Location = new System.Drawing.Point(579, 107);
+            this.chkBoxChonTatCaCaSang.Name = "chkBoxChonTatCaCaSang";
+            this.chkBoxChonTatCaCaSang.Size = new System.Drawing.Size(81, 17);
+            this.chkBoxChonTatCaCaSang.TabIndex = 65;
+            this.chkBoxChonTatCaCaSang.Text = "Chọn tất cả";
+            this.chkBoxChonTatCaCaSang.UseVisualStyleBackColor = true;
+            this.chkBoxChonTatCaCaSang.CheckedChanged += new System.EventHandler(this.chkBoxChonTatCaCaSang_CheckedChanged);
+            // 
+            // chkBoxChonTatCaCaChieu
+            // 
+            this.chkBoxChonTatCaCaChieu.AutoSize = true;
+            this.chkBoxChonTatCaCaChieu.Location = new System.Drawing.Point(579, 147);
+            this.chkBoxChonTatCaCaChieu.Name = "chkBoxChonTatCaCaChieu";
+            this.chkBoxChonTatCaCaChieu.Size = new System.Drawing.Size(81, 17);
+            this.chkBoxChonTatCaCaChieu.TabIndex = 64;
+            this.chkBoxChonTatCaCaChieu.Text = "Chọn tất cả";
+            this.chkBoxChonTatCaCaChieu.UseVisualStyleBackColor = true;
+            this.chkBoxChonTatCaCaChieu.CheckedChanged += new System.EventHandler(this.chkBoxChonTatCaCaChieu_CheckedChanged);
             // 
             // dgvCaSang
             // 
@@ -524,6 +568,7 @@
             this.tabLichRanh.AttachedControl = this.tabControlPanel1;
             this.tabLichRanh.Name = "tabLichRanh";
             this.tabLichRanh.Text = "Chọn lịch rãnh";
+            this.tabLichRanh.Click += new System.EventHandler(this.tabLichRanh_Click);
             // 
             // tabControlPanel2
             // 
@@ -569,6 +614,8 @@
             this.dgvDSNhanVien.Name = "dgvDSNhanVien";
             this.dgvDSNhanVien.Size = new System.Drawing.Size(287, 150);
             this.dgvDSNhanVien.TabIndex = 29;
+            this.dgvDSNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDSNhanVien_CellClick);
+            this.dgvDSNhanVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDSNhanVien_CellContentClick);
             // 
             // btnCapNhatNV
             // 
@@ -578,6 +625,7 @@
             this.btnCapNhatNV.TabIndex = 27;
             this.btnCapNhatNV.Text = "Cập nhật thông tin nhân viên";
             this.btnCapNhatNV.UseVisualStyleBackColor = true;
+            this.btnCapNhatNV.Click += new System.EventHandler(this.btnCapNhatNV_Click);
             // 
             // dataGridView1
             // 
@@ -595,6 +643,7 @@
             this.btnLuu.TabIndex = 25;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // button5
             // 
@@ -613,6 +662,7 @@
             this.btnHuy.TabIndex = 22;
             this.btnHuy.Text = "Hủy";
             this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // button4
             // 
@@ -631,6 +681,7 @@
             this.btnXoaNV.TabIndex = 21;
             this.btnXoaNV.Text = "Xóa nhân viên";
             this.btnXoaNV.UseVisualStyleBackColor = true;
+            this.btnXoaNV.Click += new System.EventHandler(this.btnXoaNV_Click);
             // 
             // button3
             // 
@@ -649,6 +700,7 @@
             this.btnThemNV.TabIndex = 19;
             this.btnThemNV.Text = "Thêm nhân viên";
             this.btnThemNV.UseVisualStyleBackColor = true;
+            this.btnThemNV.Click += new System.EventHandler(this.btnThemNV_Click);
             // 
             // button2
             // 
@@ -739,10 +791,10 @@
             this.tabNhanVien.AttachedControl = this.tabControlPanel2;
             this.tabNhanVien.Name = "tabNhanVien";
             this.tabNhanVien.Text = "Nhân viên";
+            this.tabNhanVien.Click += new System.EventHandler(this.tabNhanVien_Click);
             // 
             // tabControlPanel3
             // 
-            this.tabControlPanel3.Controls.Add(this.txtTest);
             this.tabControlPanel3.Controls.Add(this.buttonX2);
             this.tabControlPanel3.Controls.Add(this.buttonX1);
             this.tabControlPanel3.Controls.Add(this.progressBarX1);
@@ -750,7 +802,7 @@
             this.tabControlPanel3.Location = new System.Drawing.Point(0, 26);
             this.tabControlPanel3.Name = "tabControlPanel3";
             this.tabControlPanel3.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel3.Size = new System.Drawing.Size(579, 253);
+            this.tabControlPanel3.Size = new System.Drawing.Size(670, 253);
             this.tabControlPanel3.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(209)))), ((int)(((byte)(255)))));
             this.tabControlPanel3.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(244)))), ((int)(((byte)(255)))));
             this.tabControlPanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -760,14 +812,6 @@
             this.tabControlPanel3.Style.GradientAngle = 90;
             this.tabControlPanel3.TabIndex = 3;
             this.tabControlPanel3.TabItem = this.tabPhanCong;
-            // 
-            // txtTest
-            // 
-            this.txtTest.Location = new System.Drawing.Point(60, 22);
-            this.txtTest.Multiline = true;
-            this.txtTest.Name = "txtTest";
-            this.txtTest.Size = new System.Drawing.Size(509, 208);
-            this.txtTest.TabIndex = 64;
             // 
             // buttonX2
             // 
@@ -800,44 +844,12 @@
             this.tabPhanCong.AttachedControl = this.tabControlPanel3;
             this.tabPhanCong.Name = "tabPhanCong";
             this.tabPhanCong.Text = "Phân công";
+            this.tabPhanCong.Click += new System.EventHandler(this.tabPhanCong_Click);
             // 
             // tabItem3
             // 
             this.tabItem3.Name = "tabItem3";
             this.tabItem3.Text = "Phân công";
-            // 
-            // chkBoxChonTatCaCaChieu
-            // 
-            this.chkBoxChonTatCaCaChieu.AutoSize = true;
-            this.chkBoxChonTatCaCaChieu.Location = new System.Drawing.Point(579, 147);
-            this.chkBoxChonTatCaCaChieu.Name = "chkBoxChonTatCaCaChieu";
-            this.chkBoxChonTatCaCaChieu.Size = new System.Drawing.Size(81, 17);
-            this.chkBoxChonTatCaCaChieu.TabIndex = 64;
-            this.chkBoxChonTatCaCaChieu.Text = "Chọn tất cả";
-            this.chkBoxChonTatCaCaChieu.UseVisualStyleBackColor = true;
-            this.chkBoxChonTatCaCaChieu.CheckedChanged += new System.EventHandler(this.chkBoxChonTatCaCaChieu_CheckedChanged);
-            // 
-            // chkBoxChonTatCaCaSang
-            // 
-            this.chkBoxChonTatCaCaSang.AutoSize = true;
-            this.chkBoxChonTatCaCaSang.Location = new System.Drawing.Point(579, 107);
-            this.chkBoxChonTatCaCaSang.Name = "chkBoxChonTatCaCaSang";
-            this.chkBoxChonTatCaCaSang.Size = new System.Drawing.Size(81, 17);
-            this.chkBoxChonTatCaCaSang.TabIndex = 65;
-            this.chkBoxChonTatCaCaSang.Text = "Chọn tất cả";
-            this.chkBoxChonTatCaCaSang.UseVisualStyleBackColor = true;
-            this.chkBoxChonTatCaCaSang.CheckedChanged += new System.EventHandler(this.chkBoxChonTatCaCaSang_CheckedChanged);
-            // 
-            // chkBoxChonTatCaCaToi
-            // 
-            this.chkBoxChonTatCaCaToi.AutoSize = true;
-            this.chkBoxChonTatCaCaToi.Location = new System.Drawing.Point(579, 187);
-            this.chkBoxChonTatCaCaToi.Name = "chkBoxChonTatCaCaToi";
-            this.chkBoxChonTatCaCaToi.Size = new System.Drawing.Size(81, 17);
-            this.chkBoxChonTatCaCaToi.TabIndex = 66;
-            this.chkBoxChonTatCaCaToi.Text = "Chọn tất cả";
-            this.chkBoxChonTatCaCaToi.UseVisualStyleBackColor = true;
-            this.chkBoxChonTatCaCaToi.CheckedChanged += new System.EventHandler(this.chkBoxChonTatCaCaToi_CheckedChanged);
             // 
             // Form_DanhSachNhanVien
             // 
@@ -861,7 +873,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSNhanVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControlPanel3.ResumeLayout(false);
-            this.tabControlPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -935,7 +946,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn col_Chieu_Thu6;
         private System.Windows.Forms.DataGridViewCheckBoxColumn col_Chieu_Thu7;
         private System.Windows.Forms.DataGridViewCheckBoxColumn col_Chieu_ChuNhat;
-        private System.Windows.Forms.TextBox txtTest;
         private System.Windows.Forms.DataGridView dgvCaSang;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgv_Sang_Thu2;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgv_Sang_Thu3;
@@ -947,6 +957,7 @@
         private System.Windows.Forms.CheckBox chkBoxChonTatCaCaToi;
         private System.Windows.Forms.CheckBox chkBoxChonTatCaCaSang;
         private System.Windows.Forms.CheckBox chkBoxChonTatCaCaChieu;
+        private System.Windows.Forms.Button btnCapNhatLichRanh;
 
 
     }
