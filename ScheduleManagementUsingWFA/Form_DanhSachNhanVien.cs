@@ -532,8 +532,7 @@ namespace ScheduleManagementUsingWFA
                 btnHuy_Click(sender, e);
             }
             else {
-                db.NhanViens.I
-                db.SubmitChanges();
+                
             }
         }
 

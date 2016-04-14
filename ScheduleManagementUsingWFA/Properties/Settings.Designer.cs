@@ -33,5 +33,16 @@ namespace ScheduleManagementUsingWFA.Properties {
                 return ((string)(this["ScheduleManagementConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=|DataDirectory|\\ScheduleManagement.m" +
+            "df;Integrated Security=True")]
+        public string ScheduleManagementConnectionString1 {
+            get {
+                return ((string)(this["ScheduleManagementConnectionString1"]));
+            }
+        }
     }
 }
