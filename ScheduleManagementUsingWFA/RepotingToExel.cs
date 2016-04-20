@@ -10,15 +10,17 @@ using System.Windows.Forms;
 
 namespace ScheduleManagementUsingWFA
 {
-    public partial class Form_PhanCong : Form
+    public partial class RepotingToExel : Form
     {
-        public Form_PhanCong()
+        public RepotingToExel()
         {
             InitializeComponent();
         }
 
-        private void Form_PhanCong_Load(object sender, EventArgs e)
+        private void RepotingToExel_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'ScheduleManagementDataSet.XepLich' table. You can move, or remove it, as needed.
+            
 
             this.reportViewer1.RefreshReport();
         }

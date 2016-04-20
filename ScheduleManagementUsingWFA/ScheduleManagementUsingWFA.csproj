@@ -11,6 +11,7 @@
     <AssemblyName>ScheduleManagementUsingWFA</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -69,12 +69,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form_Dang_Nhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,36 +81,27 @@
     <Compile Include="Form_DanhSachNhanVien.Designer.cs">
       <DependentUpon>Form_DanhSachNhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_Lich_Cong_Viec.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_Lich_Cong_Viec.Designer.cs">
-      <DependentUpon>Form_Lich_Cong_Viec.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form_PhanCong.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_PhanCong.Designer.cs">
-      <DependentUpon>Form_PhanCong.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepotingToExel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepotingToExel.Designer.cs">
+      <DependentUpon>RepotingToExel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ScheduleManagement.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ScheduleManagement.dbml</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="ScheduleManagementDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScheduleManagementDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form_DanhSachNhanVien.resx">
       <DependentUpon>Form_DanhSachNhanVien.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Lich_Cong_Viec.resx">
-      <DependentUpon>Form_Lich_Cong_Viec.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_PhanCong.resx">
-      <DependentUpon>Form_PhanCong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -127,6 +112,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="RepotingToExel.resx">
+      <DependentUpon>RepotingToExel.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ScheduleManagement.dbml.layout">
       <DependentUpon>ScheduleManagement.dbml</DependentUpon>
     </None>
@@ -143,6 +132,17 @@
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>ScheduleManagement.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </None>
+    <None Include="ScheduleManagementDataSet.xsc">
+      <DependentUpon>ScheduleManagementDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ScheduleManagementDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ScheduleManagementDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ScheduleManagementDataSet.xss">
+      <DependentUpon>ScheduleManagementDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +172,53 @@
       <ProductName>SQL Server Compact 4.0 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AdHocReportingExcelClientLib">
+      <Guid>{8E47F3A2-81A4-468E-A401-E1DEBBAE2D8D}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="ExcelAddin_RDLib">
+      <Guid>{EC0AA958-5A2C-4425-8E93-96F3A744DD66}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

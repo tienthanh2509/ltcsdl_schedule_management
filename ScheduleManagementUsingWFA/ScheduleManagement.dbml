@@ -25,17 +25,6 @@
       <Association Name="NhanVien_PhanCongLamViec" Member="PhanCongLamViecs" ThisKey="Id" OtherKey="MaNV" Type="PhanCongLamViec" />
     </Type>
   </Table>
-  <Table Name="dbo.PhanCongLamViec" Member="PhanCongLamViecs">
-    <Type Name="PhanCongLamViec">
-      <Column Name="MaNV" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaCaLV" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaViTriLV" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ThuLamViec" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="CaLamViec_PhanCongLamViec" Member="CaLamViec" ThisKey="MaCaLV" OtherKey="Id" Type="CaLamViec" IsForeignKey="true" />
-      <Association Name="NhanVien_PhanCongLamViec" Member="NhanVien" ThisKey="MaNV" OtherKey="Id" Type="NhanVien" IsForeignKey="true" />
-      <Association Name="ViTriLamViec_PhanCongLamViec" Member="ViTriLamViec" ThisKey="MaViTriLV" OtherKey="Id" Type="ViTriLamViec" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ThoiGianLamViec" Member="ThoiGianLamViecs">
     <Type Name="ThoiGianLamViec">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -46,7 +35,16 @@
     <Type Name="ViTriLamViec">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ViTri" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
-      <Association Name="ViTriLamViec_PhanCongLamViec" Member="PhanCongLamViecs" ThisKey="Id" OtherKey="MaViTriLV" Type="PhanCongLamViec" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhanCongLamViec" Member="PhanCongLamViecs">
+    <Type Name="PhanCongLamViec">
+      <Column Name="MaNV" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaCaLV" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaViTriLV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ThuLamViec" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="CaLamViec_PhanCongLamViec" Member="CaLamViec" ThisKey="MaCaLV" OtherKey="Id" Type="CaLamViec" IsForeignKey="true" />
+      <Association Name="NhanVien_PhanCongLamViec" Member="NhanVien" ThisKey="MaNV" OtherKey="Id" Type="NhanVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>

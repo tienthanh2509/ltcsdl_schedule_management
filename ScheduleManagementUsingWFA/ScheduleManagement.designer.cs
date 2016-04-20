@@ -39,15 +39,15 @@ namespace ScheduleManagementUsingWFA
     partial void InsertNhanVien(NhanVien instance);
     partial void UpdateNhanVien(NhanVien instance);
     partial void DeleteNhanVien(NhanVien instance);
-    partial void InsertPhanCongLamViec(PhanCongLamViec instance);
-    partial void UpdatePhanCongLamViec(PhanCongLamViec instance);
-    partial void DeletePhanCongLamViec(PhanCongLamViec instance);
     partial void InsertThoiGianLamViec(ThoiGianLamViec instance);
     partial void UpdateThoiGianLamViec(ThoiGianLamViec instance);
     partial void DeleteThoiGianLamViec(ThoiGianLamViec instance);
     partial void InsertViTriLamViec(ViTriLamViec instance);
     partial void UpdateViTriLamViec(ViTriLamViec instance);
     partial void DeleteViTriLamViec(ViTriLamViec instance);
+    partial void InsertPhanCongLamViec(PhanCongLamViec instance);
+    partial void UpdatePhanCongLamViec(PhanCongLamViec instance);
+    partial void DeletePhanCongLamViec(PhanCongLamViec instance);
     #endregion
 		
 		public ScheduleManagementDataContext() : 
@@ -104,14 +104,6 @@ namespace ScheduleManagementUsingWFA
 			}
 		}
 		
-		public System.Data.Linq.Table<PhanCongLamViec> PhanCongLamViecs
-		{
-			get
-			{
-				return this.GetTable<PhanCongLamViec>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ThoiGianLamViec> ThoiGianLamViecs
 		{
 			get
@@ -125,6 +117,14 @@ namespace ScheduleManagementUsingWFA
 			get
 			{
 				return this.GetTable<ViTriLamViec>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PhanCongLamViec> PhanCongLamViecs
+		{
+			get
+			{
+				return this.GetTable<PhanCongLamViec>();
 			}
 		}
 	}
@@ -584,263 +584,6 @@ namespace ScheduleManagementUsingWFA
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PhanCongLamViec")]
-	public partial class PhanCongLamViec : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MaNV;
-		
-		private int _MaCaLV;
-		
-		private int _MaViTriLV;
-		
-		private string _ThuLamViec;
-		
-		private EntityRef<CaLamViec> _CaLamViec;
-		
-		private EntityRef<NhanVien> _NhanVien;
-		
-		private EntityRef<ViTriLamViec> _ViTriLamViec;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMaNVChanging(int value);
-    partial void OnMaNVChanged();
-    partial void OnMaCaLVChanging(int value);
-    partial void OnMaCaLVChanged();
-    partial void OnMaViTriLVChanging(int value);
-    partial void OnMaViTriLVChanged();
-    partial void OnThuLamViecChanging(string value);
-    partial void OnThuLamViecChanged();
-    #endregion
-		
-		public PhanCongLamViec()
-		{
-			this._CaLamViec = default(EntityRef<CaLamViec>);
-			this._NhanVien = default(EntityRef<NhanVien>);
-			this._ViTriLamViec = default(EntityRef<ViTriLamViec>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaNV", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MaNV
-		{
-			get
-			{
-				return this._MaNV;
-			}
-			set
-			{
-				if ((this._MaNV != value))
-				{
-					if (this._NhanVien.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaNVChanging(value);
-					this.SendPropertyChanging();
-					this._MaNV = value;
-					this.SendPropertyChanged("MaNV");
-					this.OnMaNVChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaCaLV", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MaCaLV
-		{
-			get
-			{
-				return this._MaCaLV;
-			}
-			set
-			{
-				if ((this._MaCaLV != value))
-				{
-					if (this._CaLamViec.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaCaLVChanging(value);
-					this.SendPropertyChanging();
-					this._MaCaLV = value;
-					this.SendPropertyChanged("MaCaLV");
-					this.OnMaCaLVChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaViTriLV", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MaViTriLV
-		{
-			get
-			{
-				return this._MaViTriLV;
-			}
-			set
-			{
-				if ((this._MaViTriLV != value))
-				{
-					if (this._ViTriLamViec.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaViTriLVChanging(value);
-					this.SendPropertyChanging();
-					this._MaViTriLV = value;
-					this.SendPropertyChanged("MaViTriLV");
-					this.OnMaViTriLVChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThuLamViec", DbType="NChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string ThuLamViec
-		{
-			get
-			{
-				return this._ThuLamViec;
-			}
-			set
-			{
-				if ((this._ThuLamViec != value))
-				{
-					this.OnThuLamViecChanging(value);
-					this.SendPropertyChanging();
-					this._ThuLamViec = value;
-					this.SendPropertyChanged("ThuLamViec");
-					this.OnThuLamViecChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CaLamViec_PhanCongLamViec", Storage="_CaLamViec", ThisKey="MaCaLV", OtherKey="Id", IsForeignKey=true)]
-		public CaLamViec CaLamViec
-		{
-			get
-			{
-				return this._CaLamViec.Entity;
-			}
-			set
-			{
-				CaLamViec previousValue = this._CaLamViec.Entity;
-				if (((previousValue != value) 
-							|| (this._CaLamViec.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._CaLamViec.Entity = null;
-						previousValue.PhanCongLamViecs.Remove(this);
-					}
-					this._CaLamViec.Entity = value;
-					if ((value != null))
-					{
-						value.PhanCongLamViecs.Add(this);
-						this._MaCaLV = value.Id;
-					}
-					else
-					{
-						this._MaCaLV = default(int);
-					}
-					this.SendPropertyChanged("CaLamViec");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NhanVien_PhanCongLamViec", Storage="_NhanVien", ThisKey="MaNV", OtherKey="Id", IsForeignKey=true)]
-		public NhanVien NhanVien
-		{
-			get
-			{
-				return this._NhanVien.Entity;
-			}
-			set
-			{
-				NhanVien previousValue = this._NhanVien.Entity;
-				if (((previousValue != value) 
-							|| (this._NhanVien.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._NhanVien.Entity = null;
-						previousValue.PhanCongLamViecs.Remove(this);
-					}
-					this._NhanVien.Entity = value;
-					if ((value != null))
-					{
-						value.PhanCongLamViecs.Add(this);
-						this._MaNV = value.Id;
-					}
-					else
-					{
-						this._MaNV = default(int);
-					}
-					this.SendPropertyChanged("NhanVien");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ViTriLamViec_PhanCongLamViec", Storage="_ViTriLamViec", ThisKey="MaViTriLV", OtherKey="Id", IsForeignKey=true)]
-		public ViTriLamViec ViTriLamViec
-		{
-			get
-			{
-				return this._ViTriLamViec.Entity;
-			}
-			set
-			{
-				ViTriLamViec previousValue = this._ViTriLamViec.Entity;
-				if (((previousValue != value) 
-							|| (this._ViTriLamViec.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ViTriLamViec.Entity = null;
-						previousValue.PhanCongLamViecs.Remove(this);
-					}
-					this._ViTriLamViec.Entity = value;
-					if ((value != null))
-					{
-						value.PhanCongLamViecs.Add(this);
-						this._MaViTriLV = value.Id;
-					}
-					else
-					{
-						this._MaViTriLV = default(int);
-					}
-					this.SendPropertyChanged("ViTriLamViec");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ThoiGianLamViec")]
 	public partial class ThoiGianLamViec : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -937,8 +680,6 @@ namespace ScheduleManagementUsingWFA
 		
 		private string _ViTri;
 		
-		private EntitySet<PhanCongLamViec> _PhanCongLamViecs;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -951,7 +692,6 @@ namespace ScheduleManagementUsingWFA
 		
 		public ViTriLamViec()
 		{
-			this._PhanCongLamViecs = new EntitySet<PhanCongLamViec>(new Action<PhanCongLamViec>(this.attach_PhanCongLamViecs), new Action<PhanCongLamViec>(this.detach_PhanCongLamViecs));
 			OnCreated();
 		}
 		
@@ -995,16 +735,219 @@ namespace ScheduleManagementUsingWFA
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ViTriLamViec_PhanCongLamViec", Storage="_PhanCongLamViecs", ThisKey="Id", OtherKey="MaViTriLV")]
-		public EntitySet<PhanCongLamViec> PhanCongLamViecs
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PhanCongLamViec")]
+	public partial class PhanCongLamViec : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MaNV;
+		
+		private int _MaCaLV;
+		
+		private System.Nullable<int> _MaViTriLV;
+		
+		private int _ThuLamViec;
+		
+		private EntityRef<CaLamViec> _CaLamViec;
+		
+		private EntityRef<NhanVien> _NhanVien;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaNVChanging(int value);
+    partial void OnMaNVChanged();
+    partial void OnMaCaLVChanging(int value);
+    partial void OnMaCaLVChanged();
+    partial void OnMaViTriLVChanging(System.Nullable<int> value);
+    partial void OnMaViTriLVChanged();
+    partial void OnThuLamViecChanging(int value);
+    partial void OnThuLamViecChanged();
+    #endregion
+		
+		public PhanCongLamViec()
+		{
+			this._CaLamViec = default(EntityRef<CaLamViec>);
+			this._NhanVien = default(EntityRef<NhanVien>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaNV", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MaNV
 		{
 			get
 			{
-				return this._PhanCongLamViecs;
+				return this._MaNV;
 			}
 			set
 			{
-				this._PhanCongLamViecs.Assign(value);
+				if ((this._MaNV != value))
+				{
+					if (this._NhanVien.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaNVChanging(value);
+					this.SendPropertyChanging();
+					this._MaNV = value;
+					this.SendPropertyChanged("MaNV");
+					this.OnMaNVChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaCaLV", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MaCaLV
+		{
+			get
+			{
+				return this._MaCaLV;
+			}
+			set
+			{
+				if ((this._MaCaLV != value))
+				{
+					if (this._CaLamViec.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaCaLVChanging(value);
+					this.SendPropertyChanging();
+					this._MaCaLV = value;
+					this.SendPropertyChanged("MaCaLV");
+					this.OnMaCaLVChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaViTriLV", DbType="Int")]
+		public System.Nullable<int> MaViTriLV
+		{
+			get
+			{
+				return this._MaViTriLV;
+			}
+			set
+			{
+				if ((this._MaViTriLV != value))
+				{
+					this.OnMaViTriLVChanging(value);
+					this.SendPropertyChanging();
+					this._MaViTriLV = value;
+					this.SendPropertyChanged("MaViTriLV");
+					this.OnMaViTriLVChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThuLamViec", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ThuLamViec
+		{
+			get
+			{
+				return this._ThuLamViec;
+			}
+			set
+			{
+				if ((this._ThuLamViec != value))
+				{
+					this.OnThuLamViecChanging(value);
+					this.SendPropertyChanging();
+					this._ThuLamViec = value;
+					this.SendPropertyChanged("ThuLamViec");
+					this.OnThuLamViecChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CaLamViec_PhanCongLamViec", Storage="_CaLamViec", ThisKey="MaCaLV", OtherKey="Id", IsForeignKey=true)]
+		public CaLamViec CaLamViec
+		{
+			get
+			{
+				return this._CaLamViec.Entity;
+			}
+			set
+			{
+				CaLamViec previousValue = this._CaLamViec.Entity;
+				if (((previousValue != value) 
+							|| (this._CaLamViec.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CaLamViec.Entity = null;
+						previousValue.PhanCongLamViecs.Remove(this);
+					}
+					this._CaLamViec.Entity = value;
+					if ((value != null))
+					{
+						value.PhanCongLamViecs.Add(this);
+						this._MaCaLV = value.Id;
+					}
+					else
+					{
+						this._MaCaLV = default(int);
+					}
+					this.SendPropertyChanged("CaLamViec");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NhanVien_PhanCongLamViec", Storage="_NhanVien", ThisKey="MaNV", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public NhanVien NhanVien
+		{
+			get
+			{
+				return this._NhanVien.Entity;
+			}
+			set
+			{
+				NhanVien previousValue = this._NhanVien.Entity;
+				if (((previousValue != value) 
+							|| (this._NhanVien.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._NhanVien.Entity = null;
+						previousValue.PhanCongLamViecs.Remove(this);
+					}
+					this._NhanVien.Entity = value;
+					if ((value != null))
+					{
+						value.PhanCongLamViecs.Add(this);
+						this._MaNV = value.Id;
+					}
+					else
+					{
+						this._MaNV = default(int);
+					}
+					this.SendPropertyChanged("NhanVien");
+				}
 			}
 		}
 		
@@ -1026,18 +969,6 @@ namespace ScheduleManagementUsingWFA
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_PhanCongLamViecs(PhanCongLamViec entity)
-		{
-			this.SendPropertyChanging();
-			entity.ViTriLamViec = this;
-		}
-		
-		private void detach_PhanCongLamViecs(PhanCongLamViec entity)
-		{
-			this.SendPropertyChanging();
-			entity.ViTriLamViec = null;
 		}
 	}
 }
